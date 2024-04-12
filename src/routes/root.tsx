@@ -23,10 +23,10 @@ const Index = () => {
     <>
       <h3>Encoding / Transforming</h3>
       <div>
-        <Link href="/base64-image-encoder">Base64 Image Encoder</Link>
+        <Link href="base64-image-encoder">Base64 Image Encoder</Link>
       </div>
       <div>
-        <Link href="/space-remover">Space Remover</Link>
+        <Link href="space-remover">Space Remover</Link>
       </div>
     </>
   )

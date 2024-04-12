@@ -11,26 +11,31 @@ import Base64ImageEncoder from './routes/base64-encoder';
 import './styles.css'
 import SpaceRemover from './routes/space-remover';
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <Root />,
+      errorElement: <ErrorPage />,
+    },
+    {
+      path: "/base64-image-encoder",
+      element: <Base64ImageEncoder />,
+      errorElement: <ErrorPage />,
+    },
+    {
+      path: "/space-remover",
+      element: <SpaceRemover />,
+      errorElement: <ErrorPage />,
+    },
+  ],
   {
-    path: "/",
-    element: <Root />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "/base64-image-encoder",
-    element: <Base64ImageEncoder />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "/space-remover",
-    element: <SpaceRemover />,
-    errorElement: <ErrorPage />,
-  },
-])
+    basename: "/tiny-tools/"
+  }
+)
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <FluentProvider theme={webDarkTheme} style={{minHeight: "100vh"}}>
+  <FluentProvider theme={webDarkTheme} style={{ minHeight: "100vh" }}>
     <RouterProvider router={router} />
   </FluentProvider>
 )

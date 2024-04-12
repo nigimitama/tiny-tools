@@ -52,12 +52,12 @@ const MenuItems = () => {
   const menuContents: MenuContent[] = [
     {
       name: "Base64 Imabe Encoder",
-      path: "/base64-image-encoder",
+      path: "base64-image-encoder",
       icon: <ImageBorderRegular />
     },
     {
       name: "Space Remover",
-      path: "/space-remover",
+      path: "space-remover",
       icon: <CodeTextEditFilled />
     }
   ]
