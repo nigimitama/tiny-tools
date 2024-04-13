@@ -26,7 +26,7 @@ const Index = () => {
         <Link href="base64-image-encoder">Base64 Image Encoder</Link>
       </div>
       <div>
-        <Link href="space-remover">Space Remover</Link>
+        <Link href="/tiny-tools/space-remover">Space Remover</Link>
       </div>
     </>
   )
