@@ -1,7 +1,8 @@
 import { makeStyles, tokens, Tab, TabList } from '@fluentui/react-components'
 import { mediaQuery, useMediaQuery } from './media-query'
 import { CodeTextEditFilled, ImageBorderRegular } from '@fluentui/react-icons'
-import Link from './link'
+import { Link } from "react-router-dom";
+
 
 const useStyles = makeStyles({
   header: {
@@ -20,6 +21,7 @@ const useStyles = makeStyles({
   },
   a: {
     color: tokens.colorNeutralForeground1,
+    textDecorationLine: "none",
   },
   fullHeight: {
     minHeight: "100vh"
@@ -32,7 +34,7 @@ const Header = () => {
 
   return (
     <header className={classes.header}>
-      <Link href="/">
+      <Link to="/" className={classes.a}>
         <h2 style={{ padding: "14px", margin: "0px" }}>
           Tiny Tools
         </h2>
@@ -49,15 +51,16 @@ type MenuContent = {
 
 
 const MenuItems = () => {
+  const classes = useStyles()
   const menuContents: MenuContent[] = [
     {
       name: "Base64 Imabe Encoder",
-      path: "base64-image-encoder",
+      path: "/base64-image-encoder",
       icon: <ImageBorderRegular />
     },
     {
       name: "Space Remover",
-      path: "space-remover",
+      path: "/space-remover",
       icon: <CodeTextEditFilled />
     }
   ]
@@ -65,7 +68,7 @@ const MenuItems = () => {
   return (
     <>
       {menuContents.map((content) => (
-        <Link key={content.path} href={content.path}>
+        <Link key={content.path} to={content.path} className={classes.a}>
           <Tab key={content.path} value={content.path} icon={content.icon}>
             {content.name}
           </Tab>
@@ -75,13 +78,20 @@ const MenuItems = () => {
   )
 }
 
+
+const relativePath = (longPath: string) => {
+  const baseName = "/tiny-tools/"
+  return longPath.replace(baseName, "/")
+}
+
+
 const HorizontalMenu = () => {
   const styles = useStyles()
 
   return (
     <TabList
       className={styles.horizontalMenu}
-      defaultSelectedValue={location.pathname}
+      defaultSelectedValue={relativePath(location.pathname)}
       size="medium"
     >
       <MenuItems />
@@ -96,7 +106,7 @@ const VerticalMenu = () => {
   return (
     <TabList
       className={styles.verticalMenu}
-      defaultSelectedValue={location.pathname}
+      defaultSelectedValue={relativePath(location.pathname)}
       size="medium"
       vertical
     >

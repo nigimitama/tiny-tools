@@ -1,5 +1,6 @@
 import Layout from "../components/layout";
-import { Link, makeStyles, typographyStyles } from '@fluentui/react-components';
+import { makeStyles, typographyStyles, tokens } from '@fluentui/react-components';
+import { Link } from "react-router-dom"
 
 
 const useStyles = makeStyles({
@@ -19,14 +20,21 @@ const Title = () => {
 }
 
 const Index = () => {
+  const linkStyles = {
+    color: tokens.colorBrandForegroundLink
+  }
   return (
     <>
       <h3>Encoding / Transforming</h3>
       <div>
-        <Link href="base64-image-encoder">Base64 Image Encoder</Link>
+        <Link to="/base64-image-encoder" style={linkStyles}>
+          Base64 Image Encoder
+        </Link>
       </div>
       <div>
-        <Link href="/tiny-tools/space-remover">Space Remover</Link>
+        <Link to="/space-remover" style={linkStyles}>
+          Space Remover
+        </Link>
       </div>
     </>
   )
