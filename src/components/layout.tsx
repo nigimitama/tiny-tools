@@ -10,6 +10,7 @@ const useStyles = makeStyles({
   },
   horizontalMenu: {
     backgroundColor: tokens.colorNeutralBackground1Hover,
+    minHeight: "0vh",
     // overflowX: "scroll",
   },
   verticalMenu: {
