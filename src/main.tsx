@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom/client'
 import { FluentProvider, webDarkTheme } from '@fluentui/react-components'
 
 import {
-  createBrowserRouter,
+  createHashRouter,
   RouterProvider,
 } from "react-router-dom"
 import Root from "./routes/root";
@@ -11,7 +11,7 @@ import Base64ImageEncoder from './routes/base64-encoder';
 import './styles.css'
 import SpaceRemover from './routes/space-remover';
 
-const router = createBrowserRouter(
+const router = createHashRouter(
   [
     {
       path: "/",
@@ -30,7 +30,7 @@ const router = createBrowserRouter(
     },
   ],
   {
-    basename: "/tiny-tools/"
+    basename: "/"
   }
 )
 
