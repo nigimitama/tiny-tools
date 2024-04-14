@@ -10,7 +10,6 @@ const useStyles = makeStyles({
   },
   horizontalMenu: {
     backgroundColor: tokens.colorNeutralBackground1Hover,
-    minHeight: "0vh",
     // overflowX: "scroll",
   },
   verticalMenu: {
@@ -115,7 +114,7 @@ const Layout = ({ children }: LayoutProps) => {
         style={isSp ? {} : { display: "flex" }}
         className={styles.fullHeight}
       >
-        <div style={{ flexBasis: "300px" }} className={styles.fullHeight}>
+        <div style={{ flexBasis: "300px", minHeight: "0vh" }} className={styles.fullHeight}>
           {isSp ? <HorizontalMenu /> : <VerticalMenu />}
         </div>
         <div style={{ flex: 1, margin: "32px" }} className={styles.fullHeight}>
