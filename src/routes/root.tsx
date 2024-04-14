@@ -36,6 +36,11 @@ const Index = () => {
           Space Remover
         </Link>
       </div>
+      <div>
+        <Link to="/amazon-url-shortener" style={linkStyles}>
+          Amazon URL Shortener
+        </Link>
+      </div>
     </>
   )
 }

@@ -10,6 +10,7 @@ import ErrorPage from "./routes/error-page";
 import Base64ImageEncoder from './routes/base64-encoder';
 import './styles.css'
 import SpaceRemover from './routes/space-remover';
+import AmazonUrlShortener from './routes/amazon-url-shortener';
 
 const router = createBrowserRouter(
   [
@@ -21,6 +22,11 @@ const router = createBrowserRouter(
     {
       path: "/base64-image-encoder",
       element: <Base64ImageEncoder />,
+      errorElement: <ErrorPage />,
+    },
+    {
+      path: "/amazon-url-shortener",
+      element: <AmazonUrlShortener />,
       errorElement: <ErrorPage />,
     },
     {
