@@ -2,6 +2,7 @@ import { makeStyles, tokens, Tab, TabList } from '@fluentui/react-components'
 import { mediaQuery, useMediaQuery } from './media-query'
 import { CodeTextEditFilled, ImageBorderRegular } from '@fluentui/react-icons'
 import { Link } from "react-router-dom";
+import { menuItems } from '../routes/routes';
 
 
 const useStyles = makeStyles({
@@ -44,39 +45,17 @@ const Header = () => {
   )
 }
 
-type MenuContent = {
-  name: string,
-  path: string,
-  icon: React.ReactElement
-}
-
 
 const MenuItems = () => {
   const classes = useStyles()
-  const menuContents: MenuContent[] = [
-    {
-      name: "Base64 Imabe Encoder",
-      path: "/base64-image-encoder",
-      icon: <ImageBorderRegular />
-    },
-    {
-      name: "Amazon URL Shortener",
-      path: "/amazon-url-shortener",
-      icon: <CodeTextEditFilled />
-    },
-    {
-      name: "Space Remover",
-      path: "/space-remover",
-      icon: <CodeTextEditFilled />
-    }
-  ]
+  const menuContents = menuItems
 
   return (
     <>
       {menuContents.map((content) => (
         <Link key={content.path} to={content.path} className={classes.a}>
           <Tab key={content.path} value={content.path} icon={content.icon}>
-            {content.name}
+            {content.title}
           </Tab>
         </Link>
       ))}
