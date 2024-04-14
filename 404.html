@@ -5,16 +5,15 @@
     <title>404</title>
     <!--
       Github Pages + React Routerでroot以外のURLに直接アクセスすると404に飛ぶため、
-      本来のルートに戻すプログラム
+      せめてリポジトリのrootにリダイレクトする
       参考：https://github.com/rafgraph/spa-github-pages?tab=readme-ov-file
     -->
     <script type="text/javascript">
-      const numOfPathPartsToKeep = 1
       const l = window.location
-      const pathPart = l.pathname //.split('/').slice(0, 1 + numOfPathPartsToKeep).join('/')
-      const trueURL = `${l.origin}${pathPart}/?`
-      console.log(`${l} -> ${trueURL}`)
-      l.replace(trueURL)
+      const repositoryName = l.pathname.split('/')[1]
+      const newURL = `${l.origin}/${repositoryName}`
+      console.log(`${l} -> ${newURL}`)
+      l.replace(newURL) // redirect
     </script>
   </head>
   <body>
