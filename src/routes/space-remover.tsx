@@ -23,7 +23,8 @@ const InputArea = ({ text, setText }: InputProps) => {
           const inputText = (event.target as HTMLTextAreaElement).value
           setText(inputText)
         }}
-        style={{ height: "10em" }}
+        style={{ minHeight: "10em" }}
+        resize="vertical"
       />
     </Field>
   )
@@ -39,7 +40,8 @@ const OutputArea = ({ text }: OutputProps) => {
     <Field key="output" label="Result" style={{ margin: "2em" }}>
       <Textarea
         value={removeSpaces(text)}
-        style={{ height: "10em" }}
+        style={{ minHeight: "10em" }}
+        resize="vertical"
       />
     </Field>
   )
