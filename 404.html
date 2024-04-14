@@ -12,7 +12,7 @@
       const numOfPathPartsToKeep = 0
       const l = window.location
       const pathPart = l.pathname.split('/').slice(0, 1 + numOfPathPartsToKeep).join('/')
-      const trueURL = `${l.hostname}/${pathPart}`
+      const trueURL = `${l.origin}/${pathPart}`
       l.replace(trueURL)
     </script>
   </head>
