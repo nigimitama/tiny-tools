@@ -9,10 +9,11 @@
       参考：https://github.com/rafgraph/spa-github-pages?tab=readme-ov-file
     -->
     <script type="text/javascript">
-      const numOfPathPartsToKeep = 0
+      const numOfPathPartsToKeep = 1
       const l = window.location
-      const pathPart = l.pathname.split('/').slice(0, 1 + numOfPathPartsToKeep).join('/')
-      const trueURL = `${l.origin}/${pathPart}`
+      const pathPart = l.pathname //.split('/').slice(0, 1 + numOfPathPartsToKeep).join('/')
+      const trueURL = `${l.origin}${pathPart}/?`
+      console.log(`${l} -> ${trueURL}`)
       l.replace(trueURL)
     </script>
   </head>
