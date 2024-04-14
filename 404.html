@@ -10,9 +10,7 @@
     -->
     <script type="text/javascript">
       const l = window.location
-      const repositoryName = l.pathname.split('/')[1]
-      const newURL = `${l.origin}/${repositoryName}`
-      console.log(`${l} -> ${newURL}`)
+      const newURL = l.origin
       l.replace(newURL) // redirect
     </script>
   </head>

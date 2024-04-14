@@ -7,7 +7,7 @@ import {
 import './styles.css'
 import { routes } from './routes/routes'
 
-const router = createBrowserRouter(routes, { basename: "/tiny-tools/" })
+const router = createBrowserRouter(routes, { basename: "/" })
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <FluentProvider theme={webDarkTheme} style={{ minHeight: "100vh" }}>
