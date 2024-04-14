@@ -1,5 +1,6 @@
 import Layout from "../components/layout";
 import { useState } from 'react'
+import { Field, Textarea } from "@fluentui/react-components";
 
 
 type InputProps = {
@@ -29,7 +30,7 @@ const InputArea = ({ result, setResult }: InputProps) => {
     }
     reader.addEventListener("load", () => {
       const base64img = reader.result
-      if (typeof(base64img) === "string") {
+      if (typeof (base64img) === "string") {
         setResult(base64img)
       }
     })
@@ -83,16 +84,22 @@ const OutputArea = ({ result }: OutputProps) => {
 
       <h3 style={{ marginTop: "2em" }}>Result</h3>
       <h4>Text</h4>
-      <textarea
-        style={{ width: "100%", height: "4em" }}
-        defaultValue={result}
-      ></textarea>
+      <Field>
+        <Textarea
+          style={{ width: "100%", minHeight: "10em" }}
+          value={result}
+          resize="vertical"
+        />
+      </Field>
 
       <h4>img tag</h4>
-      <textarea
-        style={{ width: "100%", height: "4em" }}
-        defaultValue={`<img src=${result}>`}
-      ></textarea>
+      <Field>
+        <Textarea
+          style={{ width: "100%", minHeight: "10em" }}
+          value={`<img src="${result}">`}
+          resize="vertical"
+        />
+      </Field>
 
     </div>
   )
