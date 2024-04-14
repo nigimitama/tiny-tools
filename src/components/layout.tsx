@@ -1,6 +1,5 @@
 import { makeStyles, tokens, Tab, TabList } from '@fluentui/react-components'
 import { mediaQuery, useMediaQuery } from './media-query'
-import { CodeTextEditFilled, ImageBorderRegular } from '@fluentui/react-icons'
 import { Link } from "react-router-dom";
 import { menuItems } from '../routes/routes';
 
