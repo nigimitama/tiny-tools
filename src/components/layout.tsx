@@ -60,6 +60,11 @@ const MenuItems = () => {
       icon: <ImageBorderRegular />
     },
     {
+      name: "Amazon URL Shortener",
+      path: "/amazon-url-shortener",
+      icon: <CodeTextEditFilled />
+    },
+    {
       name: "Space Remover",
       path: "/space-remover",
       icon: <CodeTextEditFilled />
