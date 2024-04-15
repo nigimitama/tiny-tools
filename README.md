@@ -1,3 +1,3 @@
 # Tiny Tools
 
-https://nigimitama.github.io/tiny-tools/
+https://tiny-tools.net/
