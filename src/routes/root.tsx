@@ -14,7 +14,7 @@ const Title = () => {
   return (
     <div style={{ textAlign: "center" }}>
       <div className={styles.title}>Tiny Tools</div>
-      <p className={styles.text}>Simple tools that may be useful</p>
+      <p className={styles.text}>Small applications that might help you</p>
     </div>
   )
 }
