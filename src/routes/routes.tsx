@@ -4,6 +4,7 @@ import Base64ImageEncoder from './base64-encoder'
 import SpaceRemover from './space-remover'
 import AmazonUrlShortener from './amazon-url-shortener'
 import { CodeTextEditFilled, ImageBorderRegular } from "@fluentui/react-icons"
+import ImagesToPdf from "./images_to_pdf"
 
 
 type RouteSetting = {
@@ -33,6 +34,13 @@ const routeSettings: RouteSetting[] = [
     title: "Space Remover",
     path: "/space-remover",
     element: <SpaceRemover />,
+    errorElement: <ErrorPage />,
+    icon: <CodeTextEditFilled />
+  },
+  {
+    title: "Images To PDF",
+    path: "/images-to-pdf",
+    element: <ImagesToPdf />,
     errorElement: <ErrorPage />,
     icon: <CodeTextEditFilled />
   },
