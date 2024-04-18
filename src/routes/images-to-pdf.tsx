@@ -57,6 +57,11 @@ const ImagesToPdf = () => {
           <h2 style={{ margin: 0 }}>Convert Images to PDF</h2>
         </header>
         <main style={{ margin: "15px" }}>
+          <p>
+            Securely bundle images into a PDF file.<br/>
+            Your data will not be sent to a server, it will be processed by the client (your machine).
+          </p>
+
           <h3>Select Images</h3>
           <InputArea setInputImages={setInputImages} />
 
