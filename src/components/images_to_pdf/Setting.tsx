@@ -1,11 +1,17 @@
-import { useState } from 'react'
+import { useState, FormEvent } from 'react'
 import { PageSizes } from 'pdf-lib'
 import { Dropdown, Option, Input, Text } from "@fluentui/react-components"
-import { Field, Radio, RadioGroup } from "@fluentui/react-components";
+import {
+  Field, Radio, RadioGroup,
+  RadioGroupOnChangeData,
+  SelectionEvents,
+  OptionOnSelectData,
+} from "@fluentui/react-components";
 
 
 // 72 dpi pixel
-const pageSizePresets = {
+type PageSizePresets = Record<string, [number, number]>
+const pageSizePresets: PageSizePresets = {
   A3: PageSizes.A3,
   A4: PageSizes.A4,
   A5: PageSizes.A5,
@@ -16,7 +22,7 @@ const pageSizePresets = {
   B6: PageSizes.B6,
   Letter: PageSizes.Letter,
 }
-type PageSizePresets = typeof pageSizePresets
+
 
 type PageSizeDropdownProps = {
   setPageSize: React.Dispatch<React.SetStateAction<[number, number]>>,
@@ -33,8 +39,8 @@ const PageSizeDropdown = ({ setPageSize, selectedPageSize, setSelectedPageSize, 
       <Dropdown
         aria-labelledby="preset"
         placeholder="Preset"
-        onOptionSelect={(_: InputEvent, data: Option) => {
-          if (data === null) return
+        onOptionSelect={(_event: SelectionEvents, data: OptionOnSelectData) => {
+          if (data === null || data.optionText === undefined) return
           const selected: keyof PageSizePresets = data.optionText
           setPageSize(pageSizePresets[selected])
           setSelectedPageSize(selected)
@@ -80,7 +86,7 @@ const PageSizeInput = ({ pageSize, setPageSize, setSelectedPageSize, isDisabled 
           <Text size={400}>px</Text>
         }
         onChange={ReceiveInput}
-        value={pageSize[0]}
+        value={pageSize[0].toString()}
         disabled={isDisabled}
       />
       <span> x </span>
@@ -92,7 +98,7 @@ const PageSizeInput = ({ pageSize, setPageSize, setSelectedPageSize, isDisabled 
           <Text size={400}>px</Text>
         }
         onChange={ReceiveInput}
-        value={pageSize[1]}
+        value={pageSize[1].toString()}
         disabled={isDisabled}
       />
     </>
@@ -113,7 +119,7 @@ const PageSizeSetting = ({ pageSize, setPageSize }: PageSizeSettingProps) => {
         <Field label="PageSize">
           <RadioGroup
             defaultValue="original"
-            onChange={(_: Event, data: HTMLInputElement) => {
+            onChange={(_event: FormEvent<HTMLDivElement>, data: RadioGroupOnChangeData) => {
               if (data.value == "original") {
                 setPageSize([0, 0])
                 setIsCustomDisabled(true)
