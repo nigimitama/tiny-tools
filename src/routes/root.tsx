@@ -20,27 +20,41 @@ const Title = () => {
 }
 
 const Index = () => {
+  const sectionStyles = {
+    margin: "40px"
+  }
   const linkStyles = {
     color: tokens.colorBrandForegroundLink
   }
   return (
     <>
-      <h3>Encoding / Transforming</h3>
-      <div>
-        <Link to="/base64-image-encoder" style={linkStyles}>
-          Base64 Image Encoder
-        </Link>
-      </div>
-      <div>
-        <Link to="/amazon-url-shortener" style={linkStyles}>
-          Amazon URL Shortener
-        </Link>
-      </div>
-      <div>
-        <Link to="/space-remover" style={linkStyles}>
-          Space Remover
-        </Link>
-      </div>
+      <section style={sectionStyles}>
+        <h3>Encoding / Transforming</h3>
+        <div>
+          <Link to="/base64-image-encoder" style={linkStyles}>
+            Base64 Image Encoder
+          </Link>
+        </div>
+        <div>
+          <Link to="/amazon-url-shortener" style={linkStyles}>
+            Amazon URL Shortener
+          </Link>
+        </div>
+        <div>
+          <Link to="/space-remover" style={linkStyles}>
+            Space Remover
+          </Link>
+        </div>
+      </section>
+
+      <section style={sectionStyles}>
+        <h3>PDF</h3>
+        <div>
+          <Link to="/images-to-pdf" style={linkStyles}>
+            Images to PDF
+          </Link>
+        </div>
+      </section>
     </>
   )
 }
