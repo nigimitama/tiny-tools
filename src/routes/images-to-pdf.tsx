@@ -58,15 +58,19 @@ const ImagesToPdf = () => {
         </header>
         <main style={{ margin: "15px" }}>
           <p>
-            Securely bundle images into a PDF file.<br/>
+            Securely bundle images into a PDF file.<br />
             Your data will not be sent to a server, it will be processed by the client (your machine).
           </p>
 
-          <h3>Select Images</h3>
-          <InputArea setInputImages={setInputImages} />
+          <div style={{ marginTop: "30px", marginBottom: "30px" }}>
+            <h3>Select Images</h3>
+            <InputArea setInputImages={setInputImages} />
+          </div>
 
-          <h3>Option</h3>
-          <Setting pageSize={pageSize} setPageSize={setPageSize} />
+          <div style={{ marginTop: "30px", marginBottom: "30px" }}>
+            <h3>Option</h3>
+            <Setting pageSize={pageSize} setPageSize={setPageSize} />
+          </div>
 
           <ExecuteButton inputImages={inputImages} pageSize={pageSize} setPdfURL={setPdfURL} />
           <OutputArea pdfURL={pdfURL} />
