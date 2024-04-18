@@ -1,4 +1,4 @@
-import Layout from "../components/layout";
+import Layout from "../components/layout.tsx";
 import { useState } from 'react'
 import { DocumentPdfRegular } from "@fluentui/react-icons"
 import { InputArea } from "../components/images_to_pdf/InputArea.tsx";
@@ -54,7 +54,7 @@ const ImagesToPdf = () => {
     <Layout>
       <>
         <header>
-          <h2 style={{ margin: 0 }}>Base64 Image Encoder</h2>
+          <h2 style={{ margin: 0 }}>Convert Images to PDF</h2>
         </header>
         <main style={{ margin: "15px" }}>
           <h3>Select Images</h3>

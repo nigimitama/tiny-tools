@@ -3,8 +3,8 @@ import ErrorPage from "./error-page"
 import Base64ImageEncoder from './base64-encoder'
 import SpaceRemover from './space-remover'
 import AmazonUrlShortener from './amazon-url-shortener'
-import { CodeTextEditFilled, ImageBorderRegular } from "@fluentui/react-icons"
-import ImagesToPdf from "./images_to_pdf"
+import { CodeTextEditFilled, DocumentPdfRegular, ImageBorderRegular } from "@fluentui/react-icons"
+import ImagesToPdf from "./images-to-pdf"
 
 
 type RouteSetting = {
@@ -42,7 +42,7 @@ const routeSettings: RouteSetting[] = [
     path: "/images-to-pdf",
     element: <ImagesToPdf />,
     errorElement: <ErrorPage />,
-    icon: <CodeTextEditFilled />
+    icon: <DocumentPdfRegular />
   },
 ]
 
