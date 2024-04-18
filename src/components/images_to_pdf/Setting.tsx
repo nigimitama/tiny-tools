@@ -74,7 +74,6 @@ const PageSizeInput = ({ pageSize, setPageSize, setSelectedPageSize, isDisabled 
     const height = (heightInput instanceof HTMLInputElement) ? heightInput.value : ""
     setPageSize([Number(width), Number(height)])
     setSelectedPageSize("")
-    console.log(`set${[Number(width), Number(height)]}`)
   }
   return (
     <>

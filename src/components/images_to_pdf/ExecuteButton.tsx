@@ -32,18 +32,18 @@ const resizeImage = (pageSize: [number, number], imageSize: [number, number]) =>
   const exceedWidth = imageSize[0] - pageSize[0]
   const exceedHeight = imageSize[1] - pageSize[1]
 
-  const isNotExceeded = exceedWidth <= 0 || exceedHeight <= 0
+  const isNotExceeded = exceedWidth <= 0 && exceedHeight <= 0
   if (isNotExceeded) return imageSize
 
   // pageからはみ出すimageがあるなら対処
   const aspect = imageSize[0] / imageSize[1]
   if (exceedWidth > exceedHeight) {
     const newWidth = (pageSize[0] / imageSize[0]) * imageSize[0]
-    const newHeight = aspect * imageSize[1]
+    const newHeight = (1 / aspect) * newWidth
     return [newWidth, newHeight]
   } else {
-    const newWidth = aspect * imageSize[0]
     const newHeight = (pageSize[1] / imageSize[1]) * imageSize[1]
+    const newWidth = aspect * newHeight
     return [newWidth, newHeight]
   }
 }
@@ -76,8 +76,8 @@ const createPDF = async (
 
     // Draw the JPG image in the center of the page
     page.drawImage(jpgImage, {
-      x: page.getWidth() / 2 - jpgDims.width / 2,
-      y: page.getHeight() / 2 - jpgDims.height / 2,
+      x: page.getWidth() / 2 - drawImageSize[0] / 2,
+      y: page.getHeight() / 2 - drawImageSize[1] / 2,
       width: drawImageSize[0],
       height: drawImageSize[1],
     })
