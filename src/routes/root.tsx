@@ -1,13 +1,11 @@
-import Layout from "../components/layout";
-import { makeStyles, typographyStyles, tokens } from '@fluentui/react-components';
+import Layout from "../components/layout"
+import { makeStyles, typographyStyles, tokens } from "@fluentui/react-components"
 import { Link } from "react-router-dom"
-
 
 const useStyles = makeStyles({
   title: typographyStyles.title2,
   text: typographyStyles.body1,
 })
-
 
 const Title = () => {
   const styles = useStyles()
@@ -21,10 +19,10 @@ const Title = () => {
 
 const Index = () => {
   const sectionStyles = {
-    margin: "40px"
+    margin: "40px",
   }
   const linkStyles = {
-    color: tokens.colorBrandForegroundLink
+    color: tokens.colorBrandForegroundLink,
   }
   return (
     <>
@@ -45,6 +43,11 @@ const Index = () => {
             Space Remover
           </Link>
         </div>
+        <div>
+          <Link to="/words-replacer" style={linkStyles}>
+            Words Replacer
+          </Link>
+        </div>
       </section>
 
       <section style={sectionStyles}>
@@ -59,7 +62,6 @@ const Index = () => {
   )
 }
 
-
 const Root = () => {
   return (
     <Layout>
@@ -71,5 +73,4 @@ const Root = () => {
   )
 }
 
-
-export default Root;
+export default Root
