@@ -99,8 +99,12 @@ const OutputArea = ({ text, rules }: OutputProps) => {
     let newText = text
     rules.forEach((rule) => {
       if (rule.regex) {
-        const regex = new RegExp(rule.pattern, "g")
-        newText = newText.replace(regex, rule.replaceValue)
+        try {
+          const regex = new RegExp(rule.pattern, "g")
+          newText = newText.replace(regex, rule.replaceValue)
+        } catch (error) {
+          console.error("ERROR Catched:", error)
+        }
       } else {
         // TSにreplaceAllがまだ実装されていないのでsplitしてjoinする
         newText = newText.split(rule.pattern).join(rule.replaceValue)
