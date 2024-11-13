@@ -1,13 +1,11 @@
-import Layout from "../components/layout";
-import { useState } from 'react'
-import { Field, Textarea } from "@fluentui/react-components";
-
+import Layout from "../components/layout"
+import { useState } from "react"
+import { Field, Textarea } from "@fluentui/react-components"
 
 type InputProps = {
-  result: string,
+  result: string
   setResult: React.Dispatch<React.SetStateAction<string>>
 }
-
 
 const InputArea = ({ result, setResult }: InputProps) => {
   const [isFocused, setIsFocused] = useState(false)
@@ -18,8 +16,8 @@ const InputArea = ({ result, setResult }: InputProps) => {
   }
 
   const encodeImage = (event: React.ClipboardEvent<HTMLDivElement>) => {
-    const reader = new FileReader();
-    const items = event.clipboardData.items;
+    const reader = new FileReader()
+    const items = event.clipboardData.items
     for (const item of items) {
       if (item.kind == "file") {
         const file = item.getAsFile()
@@ -30,7 +28,7 @@ const InputArea = ({ result, setResult }: InputProps) => {
     }
     reader.addEventListener("load", () => {
       const base64img = reader.result
-      if (typeof (base64img) === "string") {
+      if (typeof base64img === "string") {
         setResult(base64img)
       }
     })
@@ -39,8 +37,12 @@ const InputArea = ({ result, setResult }: InputProps) => {
   return (
     <div style={inputAreaStyle} hidden={result !== ""}>
       <div
-        onFocus={() => { setIsFocused(true) }}
-        onBlur={() => { setIsFocused(false) }}
+        onFocus={() => {
+          setIsFocused(true)
+        }}
+        onBlur={() => {
+          setIsFocused(false)
+        }}
         style={{
           outline: 0,
           borderWidth: "5px",
@@ -63,17 +65,17 @@ const InputArea = ({ result, setResult }: InputProps) => {
             overflow: "hidden",
             overflowY: "auto",
           }}
-          onPaste={(event) => { encodeImage(event) }}
-        >
-        </div>
+          onPaste={(event) => {
+            encodeImage(event)
+          }}
+        ></div>
       </div>
     </div>
   )
 }
 
-
 type OutputProps = {
-  result: string,
+  result: string
 }
 
 const OutputArea = ({ result }: OutputProps) => {
@@ -100,11 +102,9 @@ const OutputArea = ({ result }: OutputProps) => {
           resize="vertical"
         />
       </Field>
-
     </div>
   )
 }
-
 
 const Base64ImageEncoder = () => {
   const [result, setResult] = useState("")
