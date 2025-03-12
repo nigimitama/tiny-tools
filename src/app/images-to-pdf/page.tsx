@@ -2,9 +2,9 @@
 
 import { useState } from "react"
 import { DocumentPdfRegular } from "@fluentui/react-icons"
-import { InputArea } from "./InputArea.tsx"
-import { Setting } from "./Setting.tsx"
-import { ExecuteButton } from "./ExecuteButton.tsx"
+import { InputArea } from "./InputArea"
+import { Setting } from "./Setting"
+import { ExecuteButton } from "./ExecuteButton"
 import {
   tokens,
   Button,
@@ -57,8 +57,8 @@ const ImagesToPdf = () => {
         <p>
           Securely bundle images into a PDF file.
           <br />
-          Your data will be processed on your device (rather than being sent to a
-          server).
+          Your data will be processed on your device (rather than being sent to
+          a server).
         </p>
 
         <div style={{ marginTop: "30px", marginBottom: "30px" }}>
