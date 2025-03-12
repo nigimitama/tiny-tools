@@ -1,7 +1,6 @@
 "use client"
 import { useState } from "react"
 import { Field, Textarea } from "@fluentui/react-components"
-import Image from "next/image"
 
 type InputProps = {
   result: string
@@ -85,7 +84,7 @@ const OutputArea = ({ result }: OutputProps) => {
     <div style={{ margin: "1em" }} hidden={result === ""}>
       <h3>Input Image</h3>
 
-      {result !== "" ? <Image src={result} alt="input image"></Image> : <></>}
+      {result !== "" ? <img src={result} alt="input image" /> : <></>}
 
       <h3 style={{ marginTop: "2em" }}>Result</h3>
       <h4>Text</h4>
@@ -114,13 +113,9 @@ const Base64ImageEncoder = () => {
 
   return (
     <>
-      <header>
-        <h2 style={{ margin: 0 }}>Base64 Image Encoder</h2>
-      </header>
-      <main>
-        <InputArea result={result} setResult={setResult} />
-        <OutputArea result={result} />
-      </main>
+      <h2 style={{ margin: 0 }}>Base64 Image Encoder</h2>
+      <InputArea result={result} setResult={setResult} />
+      <OutputArea result={result} />
     </>
   )
 }

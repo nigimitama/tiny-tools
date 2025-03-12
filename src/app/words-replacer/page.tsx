@@ -167,14 +167,12 @@ $$
 
   return (
     <>
-      <header>
-        <h2 style={{ margin: 0 }}>Words Replacer</h2>
-      </header>
-      <main style={{ margin: "2em" }}>
+      <h2 style={{ margin: 0 }}>Words Replacer</h2>
+      <section style={{ margin: "2em" }}>
         <InputArea text={text} setText={setText} />
         <ReplaceRules rules={rules} setRules={setRules} />
         <OutputArea text={text} rules={rules} />
-      </main>
+      </section>
     </>
   )
 }

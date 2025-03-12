@@ -56,13 +56,9 @@ const SpaceRemover = () => {
 
   return (
     <>
-      <header>
-        <h2 style={{ margin: 0 }}>Space Remover</h2>
-      </header>
-      <main>
-        <InputArea text={text} setText={setText} />
-        <OutputArea text={text} />
-      </main>
+      <h2 style={{ margin: 0 }}>Space Remover</h2>
+      <InputArea text={text} setText={setText} />
+      <OutputArea text={text} />
     </>
   )
 }

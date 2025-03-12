@@ -50,10 +50,8 @@ const ImagesToPdf = () => {
 
   return (
     <>
-      <header>
-        <h2 style={{ margin: 0 }}>Convert Images to PDF</h2>
-      </header>
-      <main style={{ margin: "15px" }}>
+      <h2 style={{ margin: 0 }}>Convert Images to PDF</h2>
+      <section style={{ margin: "15px" }}>
         <p>
           Securely bundle images into a PDF file.
           <br />
@@ -77,7 +75,7 @@ const ImagesToPdf = () => {
           setPdfURL={setPdfURL}
         />
         <OutputArea pdfURL={pdfURL} />
-      </main>
+      </section>
     </>
   )
 }

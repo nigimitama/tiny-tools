@@ -86,13 +86,9 @@ const AmazonUrlShortener = () => {
 
   return (
     <>
-      <header>
-        <h2 style={{ margin: 0 }}>Amazon URL Shortener</h2>
-      </header>
-      <main>
-        <InputArea setInput={setInput} />
-        <OutputArea input={input} />
-      </main>
+      <h2 style={{ margin: 0 }}>Amazon URL Shortener</h2>
+      <InputArea setInput={setInput} />
+      <OutputArea input={input} />
     </>
   )
 }
