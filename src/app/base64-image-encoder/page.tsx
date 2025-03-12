@@ -1,6 +1,7 @@
 "use client"
 import { useState } from "react"
 import { Field, Textarea } from "@fluentui/react-components"
+import Image from "next/image"
 
 type InputProps = {
   result: string
@@ -84,7 +85,7 @@ const OutputArea = ({ result }: OutputProps) => {
     <div style={{ margin: "1em" }} hidden={result === ""}>
       <h3>Input Image</h3>
 
-      {result !== "" ? <img src={result}></img> : <></>}
+      {result !== "" ? <Image src={result} alt="input image"></Image> : <></>}
 
       <h3 style={{ marginTop: "2em" }}>Result</h3>
       <h4>Text</h4>
