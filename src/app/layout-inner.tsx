@@ -10,6 +10,7 @@ import {
   ImageBorderRegular,
 } from "@fluentui/react-icons"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 
 const useStyles = makeStyles({
   header: {
@@ -99,18 +100,14 @@ const MenuItems = () => {
   )
 }
 
-const relativePath = (longPath: string) => {
-  const baseName = "/tiny-tools/"
-  return longPath.replace(baseName, "/")
-}
-
 const HorizontalMenu = () => {
   const styles = useStyles()
+  const currentPath = usePathname()
 
   return (
     <TabList
       className={styles.horizontalMenu}
-      defaultSelectedValue={relativePath(location.pathname)}
+      defaultSelectedValue={currentPath}
       size="medium"
     >
       <MenuItems />
@@ -120,11 +117,12 @@ const HorizontalMenu = () => {
 
 const VerticalMenu = () => {
   const styles = useStyles()
+  const currentPath = usePathname()
 
   return (
     <TabList
       className={styles.verticalMenu}
-      defaultSelectedValue={relativePath(location.pathname)}
+      defaultSelectedValue={currentPath}
       size="medium"
       vertical
     >
