@@ -1,10 +1,10 @@
 // ref. https://zenn.dev/nabeliwo/articles/89099b39223eca
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react"
 
 export const mediaQuery = {
-  sp: 'width < 752px',
-  tablet: '752px <= width < 1122px',
-  pc: '1122px <= width',
+  sp: "width < 752px",
+  tablet: "752px <= width < 1122px",
+  pc: "1122px <= width",
 }
 
 export const useMediaQuery = (query: string) => {
@@ -14,7 +14,7 @@ export const useMediaQuery = (query: string) => {
   useEffect(() => {
     const mql = matchMedia(formattedQuery)
 
-    if (mql.media === 'not all' || mql.media === 'invalid') {
+    if (mql.media === "not all" || mql.media === "invalid") {
       console.error(`useMediaQuery Error: Invalid media query`)
     }
 

@@ -1,12 +1,13 @@
-
-import Layout from "../components/layout"
-import { useState } from 'react'
+"use client"
+import { useState } from "react"
 import { Field, Textarea } from "@fluentui/react-components"
 
-
 const shortenUrls = (url: string): string => {
-  const urls = url.replace(/http.?:\/\//g, 'https://').split('https://')
-  return urls.filter(url => url !== '').map(url => shortenUrl('https://' + url)).join('\n')
+  const urls = url.replace(/http.?:\/\//g, "https://").split("https://")
+  return urls
+    .filter((url) => url !== "")
+    .map((url) => shortenUrl("https://" + url))
+    .join("\n")
 }
 
 const shortenUrl = (url: string): string | null => {
@@ -16,35 +17,34 @@ const shortenUrl = (url: string): string | null => {
   const asin = getAsin(url)
   if (asin === null) return null
 
-  return domain + asin;
+  return domain + asin
 }
 
 const getDomain = (url: string): string | null => {
   const domain = url.match(/http.?:\/\/(www.)?amazon[\w.]+\//g)
   if (Array.isArray(domain)) {
-    return domain[0].replace('www.', '').replace(/\/$/g, '')
+    return domain[0].replace("www.", "").replace(/\/$/g, "")
   }
   return domain
 }
 
 const getAsin = (url: string): string | null => {
   let asin
-  const isMobile = (url.match(/\/gp\/aw\/d\//g) !== null)
+  const isMobile = url.match(/\/gp\/aw\/d\//g) !== null
   if (isMobile) {
     asin = url.match(/\/gp\/aw\/d\/[\d\w]+/g)
   } else {
-    url = url.replace(/\/gp\/product\//g, '/dp/').replace('/ASIN/', '/dp/')
+    url = url.replace(/\/gp\/product\//g, "/dp/").replace("/ASIN/", "/dp/")
     asin = url.match(/\/dp\/[\d\w]+/g)
   }
   if (Array.isArray(asin)) {
     asin = asin[0]
     if (asin.search(/\/$/g) === -1) {
-      asin += '/'
+      asin += "/"
     }
   }
   return asin
 }
-
 
 type InputProps = {
   setInput: React.Dispatch<React.SetStateAction<string>>
@@ -65,7 +65,6 @@ const InputArea = ({ setInput }: InputProps) => {
   )
 }
 
-
 type OutputProps = {
   input: string
 }
@@ -82,24 +81,20 @@ const OutputArea = ({ input }: OutputProps) => {
   )
 }
 
-
 const AmazonUrlShortener = () => {
   const [input, setInput] = useState("")
 
   return (
-    <Layout>
-      <>
-        <header>
-          <h2 style={{ margin: 0 }}>Amazon URL Shortener</h2>
-        </header>
-        <main>
-          <InputArea setInput={setInput} />
-          <OutputArea input={input} />
-        </main>
-      </>
-    </Layout>
+    <>
+      <header>
+        <h2 style={{ margin: 0 }}>Amazon URL Shortener</h2>
+      </header>
+      <main>
+        <InputArea setInput={setInput} />
+        <OutputArea input={input} />
+      </main>
+    </>
   )
 }
-
 
 export default AmazonUrlShortener

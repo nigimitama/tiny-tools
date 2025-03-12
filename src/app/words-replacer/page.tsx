@@ -1,7 +1,17 @@
-import Layout from "../components/layout"
+"use client"
 import { useState } from "react"
-import { Button, Checkbox, Field, Input, Textarea } from "@fluentui/react-components"
-import { AddRegular, ArrowRightFilled, BinRecycleRegular } from "@fluentui/react-icons"
+import {
+  Button,
+  Checkbox,
+  Field,
+  Input,
+  Textarea,
+} from "@fluentui/react-components"
+import {
+  AddRegular,
+  ArrowRightFilled,
+  BinRecycleRegular,
+} from "@fluentui/react-icons"
 
 type InputProps = {
   text: string
@@ -29,7 +39,10 @@ type Rule = {
   replaceValue: string
   regex: boolean
 }
-type ReplaceRulesProps = { rules: Rule[]; setRules: React.Dispatch<React.SetStateAction<Rule[]>> }
+type ReplaceRulesProps = {
+  rules: Rule[]
+  setRules: React.Dispatch<React.SetStateAction<Rule[]>>
+}
 const ReplaceRules = ({ rules, setRules }: ReplaceRulesProps) => {
   return (
     <div style={{ margin: "1em 0" }}>
@@ -45,7 +58,11 @@ const ReplaceRules = ({ rules, setRules }: ReplaceRulesProps) => {
                 onInput={(event: React.FormEvent<HTMLInputElement>) => {
                   const inputText = (event.target as HTMLInputElement).value
                   const newRule = { ...rules[index], pattern: inputText }
-                  setRules([...rules.slice(0, index), newRule, ...rules.slice(index + 1, rules.length)])
+                  setRules([
+                    ...rules.slice(0, index),
+                    newRule,
+                    ...rules.slice(index + 1, rules.length),
+                  ])
                 }}
               />
               <ArrowRightFilled />
@@ -55,7 +72,11 @@ const ReplaceRules = ({ rules, setRules }: ReplaceRulesProps) => {
                 onInput={(event: React.FormEvent<HTMLInputElement>) => {
                   const inputText = (event.target as HTMLInputElement).value
                   const newRule = { ...rules[index], replaceValue: inputText }
-                  setRules([...rules.slice(0, index), newRule, ...rules.slice(index + 1, rules.length)])
+                  setRules([
+                    ...rules.slice(0, index),
+                    newRule,
+                    ...rules.slice(index + 1, rules.length),
+                  ])
                 }}
               />
               <Checkbox
@@ -63,14 +84,21 @@ const ReplaceRules = ({ rules, setRules }: ReplaceRulesProps) => {
                 checked={rule.regex}
                 onChange={() => {
                   const newRule = { ...rules[index], regex: !rule.regex }
-                  setRules([...rules.slice(0, index), newRule, ...rules.slice(index + 1, rules.length)])
+                  setRules([
+                    ...rules.slice(0, index),
+                    newRule,
+                    ...rules.slice(index + 1, rules.length),
+                  ])
                 }}
               />
               <Button
                 appearance="subtle"
                 icon={<BinRecycleRegular />}
                 onClick={() => {
-                  setRules([...rules.slice(0, index), ...rules.slice(index + 1, rules.length)])
+                  setRules([
+                    ...rules.slice(0, index),
+                    ...rules.slice(index + 1, rules.length),
+                  ])
                 }}
               />
             </div>
@@ -114,12 +142,16 @@ const OutputArea = ({ text, rules }: OutputProps) => {
   }
   return (
     <Field key="output" label="Result">
-      <Textarea value={format(text)} style={{ minHeight: "10em" }} resize="vertical" />
+      <Textarea
+        value={format(text)}
+        style={{ minHeight: "10em" }}
+        resize="vertical"
+      />
     </Field>
   )
 }
 
-export const WordsReplacer = () => {
+export default function WordsReplacer() {
   const sampleText = `This is a sample text.
 $$
 x = \\left( x_1, x_2 \\right)
@@ -134,17 +166,15 @@ $$
   const [rules, setRules] = useState<Rule[]>(sampleRules)
 
   return (
-    <Layout>
-      <>
-        <header>
-          <h2 style={{ margin: 0 }}>Words Replacer</h2>
-        </header>
-        <main style={{ margin: "2em" }}>
-          <InputArea text={text} setText={setText} />
-          <ReplaceRules rules={rules} setRules={setRules} />
-          <OutputArea text={text} rules={rules} />
-        </main>
-      </>
-    </Layout>
+    <>
+      <header>
+        <h2 style={{ margin: 0 }}>Words Replacer</h2>
+      </header>
+      <main style={{ margin: "2em" }}>
+        <InputArea text={text} setText={setText} />
+        <ReplaceRules rules={rules} setRules={setRules} />
+        <OutputArea text={text} rules={rules} />
+      </main>
+    </>
   )
 }

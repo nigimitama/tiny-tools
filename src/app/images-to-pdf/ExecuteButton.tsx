@@ -1,33 +1,37 @@
-import { PDFDocument } from 'pdf-lib'
+import { PDFDocument } from "pdf-lib"
 import { Button } from "@fluentui/react-components"
-
 
 const getBase64Images = async (inputImages: FileList): Promise<string[]> => {
   const promises: Promise<string>[] = []
   for (const inputImage of inputImages) {
     const promise = new Promise<string>((resolve, reject) => {
-      const reader = new FileReader();
+      const reader = new FileReader()
       reader.onload = (fileLoadedEvent) => {
-        if (fileLoadedEvent.target === null || typeof fileLoadedEvent.target.result !== 'string') {
-          reject(new Error('Error reading file'));
-          return;
+        if (
+          fileLoadedEvent.target === null ||
+          typeof fileLoadedEvent.target.result !== "string"
+        ) {
+          reject(new Error("Error reading file"))
+          return
         }
-        resolve(fileLoadedEvent.target.result);
-      };
+        resolve(fileLoadedEvent.target.result)
+      }
       reader.onerror = (error) => {
-        reject(error);
-      };
-      reader.readAsDataURL(inputImage);
-    });
+        reject(error)
+      }
+      reader.readAsDataURL(inputImage)
+    })
     promises.push(promise)
   }
 
-  const results = await Promise.all(promises);
-  return results;
+  const results = await Promise.all(promises)
+  return results
 }
 
-
-const resizeImage = (pageSize: [number, number], imageSize: [number, number]) => {
+const resizeImage = (
+  pageSize: [number, number],
+  imageSize: [number, number]
+) => {
   // 固定値pageSizeだった場合、収まるように画像を縮小する
   const exceedWidth = imageSize[0] - pageSize[0]
   const exceedHeight = imageSize[1] - pageSize[1]
@@ -47,7 +51,6 @@ const resizeImage = (pageSize: [number, number], imageSize: [number, number]) =>
     return [newWidth, newHeight]
   }
 }
-
 
 const createPDF = async (
   inputImages: FileList,
@@ -87,33 +90,30 @@ const createPDF = async (
   return pdfBytes
 }
 
-
 type ExecuteButtonProps = {
-  inputImages: FileList | undefined,
-  pageSize: [number, number],
-  setPdfURL: React.Dispatch<React.SetStateAction<string>>,
+  inputImages: FileList | undefined
+  pageSize: [number, number]
+  setPdfURL: React.Dispatch<React.SetStateAction<string>>
 }
 
 export const ExecuteButton = ({
   inputImages,
   pageSize,
-  setPdfURL
+  setPdfURL,
 }: ExecuteButtonProps) => {
   const processImages = async (
     inputImages: FileList | undefined,
     pageSize: [number, number],
-    setPdfURL: React.Dispatch<React.SetStateAction<string>>,
+    setPdfURL: React.Dispatch<React.SetStateAction<string>>
   ) => {
     if (inputImages === undefined) return
     const pdfBytes = await createPDF(inputImages, pageSize)
-    const pdfBlob = new Blob([pdfBytes.buffer], { type: 'application/pdf' })
+    const pdfBlob = new Blob([pdfBytes.buffer], { type: "application/pdf" })
     const pdfUrl = window.URL.createObjectURL(pdfBlob)
     setPdfURL(pdfUrl)
   }
   return (
-    <Button
-      onClick={() => processImages(inputImages, pageSize, setPdfURL)}
-    >
+    <Button onClick={() => processImages(inputImages, pageSize, setPdfURL)}>
       Create PDF
     </Button>
   )
