@@ -108,7 +108,9 @@ export const ExecuteButton = ({
   ) => {
     if (inputImages === undefined) return
     const pdfBytes = await createPDF(inputImages, pageSize)
-    const pdfBlob = new Blob([pdfBytes.buffer], { type: "application/pdf" })
+    const pdfBlob = new Blob([new Uint8Array(pdfBytes)], {
+      type: "application/pdf",
+    })
     const pdfUrl = window.URL.createObjectURL(pdfBlob)
     setPdfURL(pdfUrl)
   }

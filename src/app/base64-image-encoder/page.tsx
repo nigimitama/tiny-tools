@@ -34,6 +34,7 @@ const InputArea = ({ result, setResult }: InputProps) => {
     })
   }
 
+  // TODO: pasteだけじゃなくファイルダイアログからも選べるようにする
   return (
     <div style={inputAreaStyle} hidden={result !== ""}>
       <div
