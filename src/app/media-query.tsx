@@ -1,3 +1,4 @@
+"use client"
 // ref. https://zenn.dev/nabeliwo/articles/89099b39223eca
 import { useEffect, useState } from "react"
 
