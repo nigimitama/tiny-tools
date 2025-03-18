@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { Field, Textarea } from "@fluentui/react-components"
+import CopyButton from "../components/CopyButton"
 
 const removeSpaces = (text: string) => {
   const space =
@@ -35,14 +36,18 @@ type OutputProps = {
 }
 
 const OutputArea = ({ text }: OutputProps) => {
+  const output = removeSpaces(text)
   return (
-    <Field key="output" label="Result" style={{ margin: "2em" }}>
-      <Textarea
-        value={removeSpaces(text)}
-        style={{ minHeight: "10em" }}
-        resize="vertical"
-      />
-    </Field>
+    <div style={{ margin: "2em" }}>
+      <Field key="output" label="Result">
+        <Textarea
+          value={output}
+          style={{ minHeight: "10em" }}
+          resize="vertical"
+        />
+      </Field>
+      <CopyButton text={output} />
+    </div>
   )
 }
 

@@ -12,6 +12,7 @@ import {
   ArrowRightFilled,
   BinRecycleRegular,
 } from "@fluentui/react-icons"
+import CopyButton from "../components/CopyButton"
 
 type InputProps = {
   text: string
@@ -140,14 +141,18 @@ const OutputArea = ({ text, rules }: OutputProps) => {
     })
     return newText
   }
+  const output = format(text)
   return (
-    <Field key="output" label="Result">
-      <Textarea
-        value={format(text)}
-        style={{ minHeight: "10em" }}
-        resize="vertical"
-      />
-    </Field>
+    <div>
+      <Field key="output" label="Result">
+        <Textarea
+          value={output}
+          style={{ minHeight: "10em" }}
+          resize="vertical"
+        />
+      </Field>
+      <CopyButton text={output} />
+    </div>
   )
 }
 

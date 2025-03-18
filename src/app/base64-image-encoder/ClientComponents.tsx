@@ -1,6 +1,7 @@
 "use client"
 import { useState } from "react"
 import { Field, Textarea } from "@fluentui/react-components"
+import CopyButton from "../components/CopyButton"
 
 type InputProps = {
   result: string
@@ -95,6 +96,7 @@ const OutputArea = ({ result }: OutputProps) => {
           resize="vertical"
         />
       </Field>
+      <CopyButton text={result} />
 
       <h4>img tag</h4>
       <Field>
@@ -104,6 +106,7 @@ const OutputArea = ({ result }: OutputProps) => {
           resize="vertical"
         />
       </Field>
+      <CopyButton text={`<img src="${result}">`} />
     </div>
   )
 }
