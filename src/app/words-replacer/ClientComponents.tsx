@@ -13,7 +13,7 @@ import {
   BinRecycleRegular,
 } from "@fluentui/react-icons"
 import CopyButton from "../components/CopyButton"
-import { loadRules, saveRules } from "./actions"
+import { loadRules, saveRules } from "./client-functions"
 
 type InputProps = {
   text: string
