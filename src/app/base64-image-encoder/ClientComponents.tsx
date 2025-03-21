@@ -1,13 +1,12 @@
-import Layout from "../components/layout";
-import { useState } from 'react'
-import { Field, Textarea } from "@fluentui/react-components";
-
+"use client"
+import { useState } from "react"
+import { Field, Textarea } from "@fluentui/react-components"
+import CopyButton from "../components/CopyButton"
 
 type InputProps = {
-  result: string,
+  result: string
   setResult: React.Dispatch<React.SetStateAction<string>>
 }
-
 
 const InputArea = ({ result, setResult }: InputProps) => {
   const [isFocused, setIsFocused] = useState(false)
@@ -18,8 +17,8 @@ const InputArea = ({ result, setResult }: InputProps) => {
   }
 
   const encodeImage = (event: React.ClipboardEvent<HTMLDivElement>) => {
-    const reader = new FileReader();
-    const items = event.clipboardData.items;
+    const reader = new FileReader()
+    const items = event.clipboardData.items
     for (const item of items) {
       if (item.kind == "file") {
         const file = item.getAsFile()
@@ -30,17 +29,22 @@ const InputArea = ({ result, setResult }: InputProps) => {
     }
     reader.addEventListener("load", () => {
       const base64img = reader.result
-      if (typeof (base64img) === "string") {
+      if (typeof base64img === "string") {
         setResult(base64img)
       }
     })
   }
 
+  // TODO: pasteだけじゃなくファイルダイアログからも選べるようにする
   return (
     <div style={inputAreaStyle} hidden={result !== ""}>
       <div
-        onFocus={() => { setIsFocused(true) }}
-        onBlur={() => { setIsFocused(false) }}
+        onFocus={() => {
+          setIsFocused(true)
+        }}
+        onBlur={() => {
+          setIsFocused(false)
+        }}
         style={{
           outline: 0,
           borderWidth: "5px",
@@ -63,24 +67,25 @@ const InputArea = ({ result, setResult }: InputProps) => {
             overflow: "hidden",
             overflowY: "auto",
           }}
-          onPaste={(event) => { encodeImage(event) }}
-        >
-        </div>
+          onPaste={(event) => {
+            encodeImage(event)
+          }}
+        ></div>
       </div>
     </div>
   )
 }
 
-
 type OutputProps = {
-  result: string,
+  result: string
 }
 
 const OutputArea = ({ result }: OutputProps) => {
   return (
-    <div style={{ margin: "1em" }} hidden={result == ""}>
+    <div style={{ margin: "1em" }} hidden={result === ""}>
       <h3>Input Image</h3>
-      <img src={result}></img>
+
+      {result !== "" ? <img src={result} alt="input image" /> : <></>}
 
       <h3 style={{ marginTop: "2em" }}>Result</h3>
       <h4>Text</h4>
@@ -91,6 +96,7 @@ const OutputArea = ({ result }: OutputProps) => {
           resize="vertical"
         />
       </Field>
+      <CopyButton text={result} />
 
       <h4>img tag</h4>
       <Field>
@@ -100,28 +106,18 @@ const OutputArea = ({ result }: OutputProps) => {
           resize="vertical"
         />
       </Field>
-
+      <CopyButton text={`<img src="${result}">`} />
     </div>
   )
 }
 
-
-const Base64ImageEncoder = () => {
+export const Base64ImageEncoder = () => {
   const [result, setResult] = useState("")
 
   return (
-    <Layout>
-      <>
-        <header>
-          <h2 style={{ margin: 0 }}>Base64 Image Encoder</h2>
-        </header>
-        <main>
-          <InputArea result={result} setResult={setResult} />
-          <OutputArea result={result} />
-        </main>
-      </>
-    </Layout>
+    <>
+      <InputArea result={result} setResult={setResult} />
+      <OutputArea result={result} />
+    </>
   )
 }
-
-export default Base64ImageEncoder
