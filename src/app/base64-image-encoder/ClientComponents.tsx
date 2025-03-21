@@ -1,6 +1,7 @@
-import Layout from "../components/layout"
+"use client"
 import { useState } from "react"
 import { Field, Textarea } from "@fluentui/react-components"
+import CopyButton from "../components/CopyButton"
 
 type InputProps = {
   result: string
@@ -34,6 +35,7 @@ const InputArea = ({ result, setResult }: InputProps) => {
     })
   }
 
+  // TODO: pasteだけじゃなくファイルダイアログからも選べるようにする
   return (
     <div style={inputAreaStyle} hidden={result !== ""}>
       <div
@@ -80,9 +82,10 @@ type OutputProps = {
 
 const OutputArea = ({ result }: OutputProps) => {
   return (
-    <div style={{ margin: "1em" }} hidden={result == ""}>
+    <div style={{ margin: "1em" }} hidden={result === ""}>
       <h3>Input Image</h3>
-      <img src={result}></img>
+
+      {result !== "" ? <img src={result} alt="input image" /> : <></>}
 
       <h3 style={{ marginTop: "2em" }}>Result</h3>
       <h4>Text</h4>
@@ -93,6 +96,7 @@ const OutputArea = ({ result }: OutputProps) => {
           resize="vertical"
         />
       </Field>
+      <CopyButton text={result} />
 
       <h4>img tag</h4>
       <Field>
@@ -102,26 +106,18 @@ const OutputArea = ({ result }: OutputProps) => {
           resize="vertical"
         />
       </Field>
+      <CopyButton text={`<img src="${result}">`} />
     </div>
   )
 }
 
-const Base64ImageEncoder = () => {
+export const Base64ImageEncoder = () => {
   const [result, setResult] = useState("")
 
   return (
-    <Layout>
-      <>
-        <header>
-          <h2 style={{ margin: 0 }}>Base64 Image Encoder</h2>
-        </header>
-        <main>
-          <InputArea result={result} setResult={setResult} />
-          <OutputArea result={result} />
-        </main>
-      </>
-    </Layout>
+    <>
+      <InputArea result={result} setResult={setResult} />
+      <OutputArea result={result} />
+    </>
   )
 }
-
-export default Base64ImageEncoder
