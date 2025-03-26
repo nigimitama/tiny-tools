@@ -4,13 +4,9 @@
 import { FluentProvider, webDarkTheme } from "@fluentui/react-components"
 import { makeStyles, tokens, Tab, TabList } from "@fluentui/react-components"
 import { mediaQuery, useMediaQuery } from "./media-query"
-import {
-  CodeTextEditFilled,
-  DocumentPdfRegular,
-  ImageBorderRegular,
-} from "@fluentui/react-icons"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { routeSettings } from "./route-settings"
 
 const useStyles = makeStyles({
   header: {
@@ -48,56 +44,27 @@ const Header = () => {
   )
 }
 
-type RouteSetting = {
-  title: string
-  path: string
-  icon: JSX.Element | undefined
-}
-
-const routeSettings: RouteSetting[] = [
-  {
-    title: "Base64 Imabe Encoder",
-    path: "/base64-image-encoder",
-    icon: <ImageBorderRegular />,
-  },
-  {
-    title: "Amazon URL Shortener",
-    path: "/amazon-url-shortener",
-    icon: <CodeTextEditFilled />,
-  },
-  {
-    title: "Space Remover",
-    path: "/space-remover",
-    icon: <CodeTextEditFilled />,
-  },
-
-  {
-    title: "Words Replacer",
-    path: "/words-replacer",
-    icon: <CodeTextEditFilled />,
-  },
-  {
-    title: "Images To PDF",
-    path: "/images-to-pdf",
-    icon: <DocumentPdfRegular />,
-  },
-]
-
 const MenuItems = () => {
   const classes = useStyles()
-  const menuContents = routeSettings
 
-  return (
-    <>
-      {menuContents.map((content) => (
-        <Link key={content.path} href={content.path} className={classes.a}>
-          <Tab key={content.path} value={content.path} icon={content.icon}>
-            {content.title}
-          </Tab>
-        </Link>
-      ))}
-    </>
-  )
+  const elements = []
+  for (const [name, settings] of routeSettings) {
+    const links = settings.map((e) => (
+      <Link key={e.path} href={e.path} className={classes.a}>
+        <Tab key={e.path} value={e.path} icon={e.icon}>
+          {e.title}
+        </Tab>
+      </Link>
+    ))
+    elements.push(
+      <div style={{ marginBottom: "1em" }}>
+        <h4 style={{ margin: "4px 8px" }}>{name}</h4>
+        {links}
+      </div>
+    )
+  }
+
+  return <>{elements}</>
 }
 
 const HorizontalMenu = () => {

@@ -4,12 +4,18 @@ import {
   makeStyles,
   typographyStyles,
   tokens,
+  Tab,
 } from "@fluentui/react-components"
 import Link from "next/link"
+import { routeSettings } from "./route-settings"
 
 const useStyles = makeStyles({
   title: typographyStyles.title2,
   text: typographyStyles.body1,
+  a: {
+    color: tokens.colorNeutralForeground1,
+    textDecorationLine: "none",
+  },
 })
 
 const Title = () => {
@@ -23,48 +29,32 @@ const Title = () => {
 }
 
 const Index = () => {
-  const sectionStyles = {
-    margin: "40px",
-  }
-  const linkStyles = {
-    color: tokens.colorBrandForegroundLink,
-  }
-  return (
-    <>
-      <section style={sectionStyles}>
-        <h3>Encoding / Transforming</h3>
-        <div>
-          <Link href="/base64-image-encoder" style={linkStyles}>
-            Base64 Image Encoder
-          </Link>
-        </div>
-        <div>
-          <Link href="/amazon-url-shortener" style={linkStyles}>
-            Amazon URL Shortener
-          </Link>
-        </div>
-        <div>
-          <Link href="/space-remover" style={linkStyles}>
-            Space Remover
-          </Link>
-        </div>
-        <div>
-          <Link href="/words-replacer" style={linkStyles}>
-            Words Replacer
-          </Link>
-        </div>
-      </section>
+  const classes = useStyles()
 
-      <section style={sectionStyles}>
-        <h3>PDF</h3>
-        <div>
-          <Link href="/images-to-pdf" style={linkStyles}>
-            Images to PDF
-          </Link>
-        </div>
-      </section>
-    </>
-  )
+  const sections = []
+  for (const [name, settings] of routeSettings) {
+    const links = settings.map((e) => (
+      <Link key={e.path} href={e.path} className={classes.a}>
+        <Tab
+          key={e.path}
+          value={e.path}
+          icon={e.icon}
+          style={{ padding: "8px 10px" }}
+        >
+          {e.title}
+        </Tab>
+      </Link>
+    ))
+
+    sections.push(
+      <div style={{ marginBottom: "40px" }}>
+        <h4 style={{ margin: "4px 8px" }}>{name}</h4>
+        {links}
+      </div>
+    )
+  }
+
+  return <>{sections}</>
 }
 
 const Root = () => {
