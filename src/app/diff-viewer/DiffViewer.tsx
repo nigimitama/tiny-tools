@@ -195,11 +195,11 @@ const OutputArea = ({
 }
 
 export const DiffViewer = () => {
-  const text1 = `This is the samle text 1.
+  const text1 = `This is the sample text 1.
 It has multiple lines.
 This line is the same.`
 
-  const text2 = `This is the samle text 2.
+  const text2 = `This is the sample text 2.
 It has several lines.
 Some of them will be different.
 This line is the same.`
