@@ -38,7 +38,7 @@ routeSettings.set("Text Transformation", [
 
 routeSettings.set("Image Transformation", [
   {
-    title: "Base64 Imabe Encoder",
+    title: "Base64 Image Encoder",
     path: "/base64-image-encoder",
     icon: <ImageBorderRegular />,
   },
