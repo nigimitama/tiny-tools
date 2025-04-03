@@ -30,6 +30,11 @@ routeSettings.set("Text Transformation", [
     icon: <CodeTextEditFilled />,
   },
   {
+    title: "JSON / Python Dict Formatter",
+    path: "/json-formatter",
+    icon: <CodeTextEditFilled />,
+  },
+  {
     title: "Difference Viewer",
     path: "/diff-viewer",
     icon: <DocumentTableSearchFilled />,
