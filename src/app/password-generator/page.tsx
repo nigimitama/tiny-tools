@@ -97,27 +97,27 @@ const PasswordGenerator = () => {
         <div className={styles.optionGroup}>
           <Checkbox
             checked={includeUppercase}
-            onChange={(_, data) => setIncludeUppercase(data.checked ?? false)}
+            onChange={(_, data) => setIncludeUppercase(!!data.checked)}
             label="Include uppercase letters (A-Z)"
           />
           <Checkbox
             checked={includeLowercase}
-            onChange={(_, data) => setIncludeLowercase(data.checked ?? false)}
+            onChange={(_, data) => setIncludeLowercase(!!data.checked)}
             label="Include lowercase letters (a-z)"
           />
           <Checkbox
             checked={includeNumbers}
-            onChange={(_, data) => setIncludeNumbers(data.checked ?? false)}
+            onChange={(_, data) => setIncludeNumbers(!!data.checked)}
             label="Include numbers (0-9)"
           />
           <Checkbox
             checked={includeSymbols}
-            onChange={(_, data) => setIncludeSymbols(data.checked ?? false)}
+            onChange={(_, data) => setIncludeSymbols(!!data.checked)}
             label="Include symbols (!@#$%^&*)"
           />
           <Checkbox
             checked={excludeSimilar}
-            onChange={(_, data) => setExcludeSimilar(data.checked ?? false)}
+            onChange={(_, data) => setExcludeSimilar(!!data.checked)}
             label="Exclude similar characters (i, l, 1, L, o, 0, O)"
           />
         </div>
