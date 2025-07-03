@@ -3,6 +3,14 @@ import {
   DocumentPdfRegular,
   DocumentTableSearchFilled,
   ImageBorderRegular,
+  QrCodeRegular,
+  PasswordRegular,
+  DataTreemapRegular,
+  LinkRegular,
+  DocumentTextRegular,
+  TextGrammarArrowLeftRegular,
+  TextCaseUppercaseRegular,
+  DocumentPageNumberRegular,
 } from "@fluentui/react-icons"
 
 export type RouteSetting = {
@@ -38,6 +46,46 @@ routeSettings.set("Text Transformation", [
     title: "Difference Viewer",
     path: "/diff-viewer",
     icon: <DocumentTableSearchFilled />,
+  },
+  {
+    title: "QR Code Generator",
+    path: "/qr-code-generator",
+    icon: <QrCodeRegular />,
+  },
+  {
+    title: "Password Generator",
+    path: "/password-generator",
+    icon: <PasswordRegular />,
+  },
+  {
+    title: "Hash Generator",
+    path: "/hash-generator",
+    icon: <DataTreemapRegular />,
+  },
+  {
+    title: "URL Encoder/Decoder",
+    path: "/url-encoder-decoder",
+    icon: <LinkRegular />,
+  },
+  {
+    title: "Base64 Text Encoder",
+    path: "/base64-text-encoder",
+    icon: <DocumentTextRegular />,
+  },
+  {
+    title: "Line Break Converter",
+    path: "/line-break-converter",
+    icon: <TextGrammarArrowLeftRegular />,
+  },
+  {
+    title: "Character Counter",
+    path: "/character-counter",
+    icon: <DocumentPageNumberRegular />,
+  },
+  {
+    title: "Case Converter",
+    path: "/case-converter",
+    icon: <TextCaseUppercaseRegular />,
   },
 ])
 
