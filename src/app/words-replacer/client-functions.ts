@@ -1,20 +1,22 @@
-// rulesはcookieに保存しておき、次回アクセス時も同じ設定が使えるようにする
+// rulesはlocalStorageに保存しておき、次回アクセス時も同じ設定が使えるようにする
 import { Rule } from "./ClientComponents"
 
+const STORAGE_KEY = "words-replacer/rules"
+
 export async function saveRules(rules: Rule[]) {
-  const res = await fetch("/api/words-replacer/rules", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(rules),
-  })
-  return res
+  if (typeof window !== "undefined") {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(rules))
+  }
+  // fetchと同じようにResponseオブジェクトを返す
+  return new Response(null, { status: 200 })
 }
 
 export async function loadRules() {
-  const res = await fetch("/api/words-replacer/rules", {
-    method: "GET",
-  })
-  return (await res.json()) as Rule[]
+  if (typeof window !== "undefined") {
+    const savedRules = localStorage.getItem(STORAGE_KEY)
+    if (savedRules) {
+      return JSON.parse(savedRules) as Rule[]
+    }
+  }
+  return []
 }
