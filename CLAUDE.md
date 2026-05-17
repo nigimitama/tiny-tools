@@ -7,20 +7,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ```bash
 # Development
 npm run dev               # Start development server with turbopack
-npm run build            # Build for production
+npm run build            # Build for production (static export)
 npm run start            # Start production server
 npm run lint             # Run ESLint
-
-# Cloudflare Pages deployment
-npm run pages:build      # Build for Cloudflare Pages
-npm run preview          # Build and preview locally
-npm run deploy           # Build and deploy to Cloudflare Pages
-npm run cf-typegen       # Generate Cloudflare types
 ```
+
+**Note**: Deployment to GitHub Pages is automated via GitHub Actions when pushing to the `develop` branch.
 
 ## Architecture Overview
 
-This is a Next.js application that provides various utility tools, deployed on Cloudflare Pages. The app follows a page-based routing structure with each tool as a separate page.
+This is a Next.js application that provides various utility tools, deployed on GitHub Pages. The app follows a page-based routing structure with each tool as a separate page.
 
 ### Key Structure
 - **Tool Pages**: Each utility tool is a separate page in `src/app/[tool-name]/page.tsx`
@@ -30,19 +26,20 @@ This is a Next.js application that provides various utility tools, deployed on C
 
 ### Current Tools
 - Amazon URL Shortener
-- Space Remover  
-- Words Replacer (with API at `/api/words-replacer/rules`)
+- Space Remover
+- Words Replacer (with localStorage-based rule storage)
 - JSON/Python Dict Formatter
 - Difference Viewer
 - Base64 Image Encoder
 - Images to PDF
 
 ### Technology Stack
-- **Framework**: Next.js 15 with App Router
+- **Framework**: Next.js 15 with App Router (Static Export)
 - **UI**: Fluent UI React Components
-- **Deployment**: Cloudflare Pages (via `@cloudflare/next-on-pages`)
+- **Deployment**: GitHub Pages (automated via GitHub Actions)
 - **Styling**: Global CSS with Fluent UI
 - **Build**: Turbopack for development
+- **Storage**: Client-side localStorage for persistent data
 
 ### Adding New Tools
 1. Create a new directory in `src/app/[tool-name]/`
